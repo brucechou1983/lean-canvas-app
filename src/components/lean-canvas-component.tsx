@@ -63,19 +63,9 @@ const LeanCanvas = () => {
             label="PROBLEM"
             value={canvasData.problem}
             onChange={(value) => handleChange('problem', value)}
-            placeholder="List your customers' top 3 problems"
+            placeholder="List your customers' top 3 problems. Existing alternatives:"
             fieldName="problem"
           />
-          <div className="mt-4">
-            <h3 className="font-bold mb-2">EXISTING ALTERNATIVES</h3>
-            <textarea
-              ref={textAreaRefs.existingAlternatives}
-              className="w-full p-2 border border-gray-300 rounded"
-              value={canvasData.existingAlternatives}
-              onChange={(e) => handleChange('existingAlternatives', e.target.value)}
-              placeholder="How these problems are solved today"
-            />
-          </div>
         </div>
         
         <div className="col-span-1 flex flex-col gap-4">
