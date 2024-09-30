@@ -32,14 +32,16 @@ const LeanCanvas = () => {
       ...prevData,
       [field]: value
     }));
-    // Set focus back to the textarea after state update
+
+    // Set focus and cursor position after state update
     setTimeout(() => {
-      if (textAreaRefs[field].current) {
-        textAreaRefs[field].current.focus();
+      const textarea = textAreaRefs[field].current;
+      if (textarea) {
+        textarea.focus();
+        textarea.setSelectionRange(value.length, value.length);
       }
     }, 0);
   };
-
   const TextArea = ({ label, value, onChange, placeholder, className = "", fieldName }) => (
     <div className={`flex flex-col h-full ${className}`}>
       <label className="font-bold mb-2">{label}</label>
