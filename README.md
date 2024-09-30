@@ -2,6 +2,8 @@
 
 A powerful tool for entrepreneurs and startups to create and manage their Lean Canvas business models.
 
+![Lean Canvas](./lean-canvas.png)
+
 ## Features
 
 - Create and edit Lean Canvas models
