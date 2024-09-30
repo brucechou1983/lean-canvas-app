@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ChangeEvent } from 'react';
 import html2canvas from 'html2canvas';
 
 const LeanCanvas = () => {
@@ -14,6 +14,37 @@ const LeanCanvas = () => {
     costStructure: '',
     revenueStreams: ''
   });
+
+  const saveToJson = () => {
+    const fileName = prompt("Enter a file name for your Lean Canvas data:", "lean-canvas-data");
+    if (fileName) {
+      const jsonString = JSON.stringify(canvasData, null, 2);
+      const blob = new Blob([jsonString], { type: 'application/json' });
+      const href = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = href;
+      link.download = `${fileName}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+  
+  const loadFromJson = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const json = JSON.parse(e.target?.result as string);
+          setCanvasData(json);
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
 
   const textAreaRefs = {
     problem: useRef(null),
@@ -170,14 +201,28 @@ const LeanCanvas = () => {
           </div>
         </div>
       </div>
-      
-      <div className="mt-4">
+      <div className="mt-4 space-x-4">
         <button 
           onClick={captureCanvas}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Save Canvas as Image
         </button>
+        <button 
+          onClick={saveToJson}
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Save to JSON
+        </button>
+        <label className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
+          Load from JSON
+          <input
+            type="file"
+            accept=".json"
+            onChange={loadFromJson}
+            className="hidden"
+          />
+        </label>
       </div>
     </div>
   );
