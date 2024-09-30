@@ -132,27 +132,28 @@ const LeanCanvas = () => {
       </div>
       
       <div className="grid grid-cols-2 gap-4 mt-4">
-        <div className="bg-pink-100 p-4 rounded">
+        <div className="bg-pink-100 p-4 rounded" style={{ height: '256px' }}>
           <TextArea
             label="COST STRUCTURE"
             value={canvasData.costStructure}
             onChange={(value) => handleChange('costStructure', value)}
             placeholder="List your fixed and variable costs"
             fieldName="costStructure"
+            className="h-full"
           />
         </div>
         
-        <div className="bg-green-100 p-4 rounded">
+        <div className="bg-green-100 p-4 rounded" style={{ height: '256px' }}>
           <TextArea
             label="REVENUE STREAMS"
             value={canvasData.revenueStreams}
             onChange={(value) => handleChange('revenueStreams', value)}
             placeholder="List your sources of revenue"
             fieldName="revenueStreams"
+            className="h-full"
           />
         </div>
-      </div>
-    </div>
+      </div>    </div>
   );
 };
 
