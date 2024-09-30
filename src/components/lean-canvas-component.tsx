@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const LeanCanvas = () => {
   const [canvasData, setCanvasData] = useState({
@@ -14,17 +14,37 @@ const LeanCanvas = () => {
     revenueStreams: ''
   });
 
+  const textAreaRefs = {
+    problem: useRef(null),
+    existingAlternatives: useRef(null),
+    solution: useRef(null),
+    keyMetrics: useRef(null),
+    uniqueValueProposition: useRef(null),
+    unfairAdvantage: useRef(null),
+    channels: useRef(null),
+    customerSegments: useRef(null),
+    costStructure: useRef(null),
+    revenueStreams: useRef(null),
+  };
+
   const handleChange = (field, value) => {
     setCanvasData(prevData => ({
       ...prevData,
       [field]: value
     }));
+    // Set focus back to the textarea after state update
+    setTimeout(() => {
+      if (textAreaRefs[field].current) {
+        textAreaRefs[field].current.focus();
+      }
+    }, 0);
   };
 
-  const TextArea = ({ label, value, onChange, placeholder, className = "" }) => (
+  const TextArea = ({ label, value, onChange, placeholder, className = "", fieldName }) => (
     <div className={`flex flex-col h-full ${className}`}>
       <label className="font-bold mb-2">{label}</label>
       <textarea
+        ref={textAreaRefs[fieldName]}
         className="flex-grow p-2 border border-gray-300 rounded"
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -42,10 +62,12 @@ const LeanCanvas = () => {
             value={canvasData.problem}
             onChange={(value) => handleChange('problem', value)}
             placeholder="List your customers' top 3 problems"
+            fieldName="problem"
           />
           <div className="mt-4">
             <h3 className="font-bold mb-2">EXISTING ALTERNATIVES</h3>
             <textarea
+              ref={textAreaRefs.existingAlternatives}
               className="w-full p-2 border border-gray-300 rounded"
               value={canvasData.existingAlternatives}
               onChange={(e) => handleChange('existingAlternatives', e.target.value)}
@@ -61,6 +83,7 @@ const LeanCanvas = () => {
               value={canvasData.solution}
               onChange={(value) => handleChange('solution', value)}
               placeholder="Outline possible solutions for each problem"
+              fieldName="solution"
             />
           </div>
           <div className="bg-green-100 p-4 rounded flex-grow">
@@ -69,6 +92,7 @@ const LeanCanvas = () => {
               value={canvasData.keyMetrics}
               onChange={(value) => handleChange('keyMetrics', value)}
               placeholder="List the key numbers that tell you how your business is doing"
+              fieldName="keyMetrics"
             />
           </div>
         </div>
@@ -79,6 +103,7 @@ const LeanCanvas = () => {
             value={canvasData.uniqueValueProposition}
             onChange={(value) => handleChange('uniqueValueProposition', value)}
             placeholder="Single, clear, compelling message that states why you are different and worth paying attention. High-level concept: Your X for Y analogy"
+            fieldName="uniqueValueProposition"
           />
         </div>
         
@@ -89,6 +114,7 @@ const LeanCanvas = () => {
               value={canvasData.unfairAdvantage}
               onChange={(value) => handleChange('unfairAdvantage', value)}
               placeholder="Something that can't be easily copied or bought"
+              fieldName="unfairAdvantage"
             />
           </div>
           <div className="bg-yellow-100 p-4 rounded flex-grow">
@@ -97,6 +123,7 @@ const LeanCanvas = () => {
               value={canvasData.channels}
               onChange={(value) => handleChange('channels', value)}
               placeholder="List your path to customers"
+              fieldName="channels"
             />
           </div>
         </div>
@@ -107,6 +134,7 @@ const LeanCanvas = () => {
             value={canvasData.customerSegments}
             onChange={(value) => handleChange('customerSegments', value)}
             placeholder="List your target customers and users. Early Adopters: List the characteristics of your ideal customers"
+            fieldName="customerSegments"
           />
         </div>
       </div>
@@ -118,6 +146,7 @@ const LeanCanvas = () => {
             value={canvasData.costStructure}
             onChange={(value) => handleChange('costStructure', value)}
             placeholder="List your fixed and variable costs"
+            fieldName="costStructure"
           />
         </div>
         
@@ -127,6 +156,7 @@ const LeanCanvas = () => {
             value={canvasData.revenueStreams}
             onChange={(value) => handleChange('revenueStreams', value)}
             placeholder="List your sources of revenue"
+            fieldName="revenueStreams"
           />
         </div>
       </div>
