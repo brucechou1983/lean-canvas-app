@@ -116,7 +116,7 @@ const LeanCanvas = () => {
   return (
     <div className="p-4 bg-gray-100 min-h-screen">
       <div ref={canvasRef}>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-5 gap-4" style={{ height: '500px' }}>
           <div className="col-span-1 bg-red-100 p-4 rounded">
             <TextArea
               label="2. PROBLEM"
