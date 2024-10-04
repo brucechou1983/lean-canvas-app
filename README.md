@@ -49,4 +49,22 @@ To learn more about the Lean Canvas methodology, check out [Lean Stack](https://
 
 If you encounter any issues or have questions, please file an issue on our [GitHub issue tracker](https://github.com/brucechou1983/lean-canvas-app/issues).
 
+## Docker Support
+
+This project includes Docker support for easy development and deployment.
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+
+### Running with Docker
+
+1. Build and start the Docker container:
+
+```bash
+docker compose up --build
+```
+
+
 Happy business modeling!
