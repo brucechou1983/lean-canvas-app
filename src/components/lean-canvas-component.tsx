@@ -11,6 +11,7 @@ const LeanCanvas = () => {
     unfairAdvantage: '',
     channels: '',
     customerSegments: '',
+    earlyAdopters: '',
     costStructure: '',
     revenueStreams: ''
   });
@@ -55,6 +56,7 @@ const LeanCanvas = () => {
     unfairAdvantage: useRef(null),
     channels: useRef(null),
     customerSegments: useRef(null),
+    earlyAdopters: useRef(null),
     costStructure: useRef(null),
     revenueStreams: useRef(null),
   };
@@ -117,14 +119,25 @@ const LeanCanvas = () => {
     <div className="p-4 bg-gray-100 min-h-screen">
       <div ref={canvasRef}>
         <div className="grid grid-cols-5 gap-4" style={{ height: '500px' }}>
-          <div className="col-span-1 bg-red-100 p-4 rounded">
+          <div className="col-span-1 bg-red-100 flex flex-col gap-4 rounded ">
+          <div className="p-4 flex-grow">
             <TextArea
               label="2. PROBLEM"
               value={canvasData.problem}
               onChange={(value) => handleChange('problem', value)}
-              placeholder="List your customers' top 3 problems. Existing alternatives:"
+              placeholder="List your customers' top 3 problems."
               fieldName="problem"
             />
+          </div>
+          <div className="p-4 flex-grow">
+            <TextArea
+              label="Existing Alternatives"
+              value={canvasData.existingAlternatives}
+              onChange={(value) => handleChange('existingAlternatives', value)}
+              placeholder="Existing alternatives:"
+              fieldName="existingAlternatives"
+            />
+          </div>
           </div>
           
           <div className="col-span-1 flex flex-col gap-4">
@@ -179,18 +192,30 @@ const LeanCanvas = () => {
             </div>
           </div>
           
-          <div className="col-span-1 bg-orange-100 p-4 rounded">
-            <TextArea
-              label="1. CUSTOMER SEGMENTS"
-              value={canvasData.customerSegments}
-              onChange={(value) => handleChange('customerSegments', value)}
-              placeholder="List your target customers and users. Early Adopters: List the characteristics of your ideal customers"
-              fieldName="customerSegments"
-            />
+          <div className="col-span-1 bg-orange-100 rounded flex flex-col gap-4 ">
+            <div className="p-4 flex-grow">
+              <TextArea
+                label="1. CUSTOMER SEGMENTS"
+                value={canvasData.customerSegments}
+                onChange={(value) => handleChange('customerSegments', value)}
+                placeholder="List your target customers and users."
+                fieldName="customerSegments"
+              />
+            </div>
+            <div className="p-4 flex-grow">
+              <TextArea
+                label="Early Adopters"
+                value={canvasData.earlyAdopters}
+                onChange={(value) => handleChange('earlyAdopters', value)}
+                placeholder="List the characteristics of your ideal customers"
+                fieldName="earlyAdopters"
+              />
+            </div>
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-4 mt-4">
+
+        <div className="grid grid-cols-2 gap-1 mt-4">
           <div className="bg-pink-100 p-4 rounded" style={{ height: '256px' }}>
             <TextArea
               label="7. COST STRUCTURE"
