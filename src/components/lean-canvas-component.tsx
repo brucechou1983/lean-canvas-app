@@ -119,7 +119,7 @@ const LeanCanvas = () => {
         <div className="grid grid-cols-5 gap-4">
           <div className="col-span-1 bg-red-100 p-4 rounded">
             <TextArea
-              label="PROBLEM"
+              label="2. PROBLEM"
               value={canvasData.problem}
               onChange={(value) => handleChange('problem', value)}
               placeholder="List your customers' top 3 problems. Existing alternatives:"
@@ -130,7 +130,7 @@ const LeanCanvas = () => {
           <div className="col-span-1 flex flex-col gap-4">
             <div className="bg-blue-100 p-4 rounded flex-grow">
               <TextArea
-                label="SOLUTION"
+                label="4. SOLUTION"
                 value={canvasData.solution}
                 onChange={(value) => handleChange('solution', value)}
                 placeholder="Outline possible solutions for each problem"
@@ -139,7 +139,7 @@ const LeanCanvas = () => {
             </div>
             <div className="bg-green-100 p-4 rounded flex-grow">
               <TextArea
-                label="KEY METRICS"
+                label="8. KEY METRICS"
                 value={canvasData.keyMetrics}
                 onChange={(value) => handleChange('keyMetrics', value)}
                 placeholder="List the key numbers that tell you how your business is doing"
@@ -150,7 +150,7 @@ const LeanCanvas = () => {
           
           <div className="col-span-1 bg-yellow-100 p-4 rounded">
             <TextArea
-              label="UNIQUE VALUE PROPOSITION"
+              label="3. UNIQUE VALUE PROPOSITION"
               value={canvasData.uniqueValueProposition}
               onChange={(value) => handleChange('uniqueValueProposition', value)}
               placeholder="Single, clear, compelling message that states why you are different and worth paying attention. High-level concept: Your X for Y analogy"
@@ -161,7 +161,7 @@ const LeanCanvas = () => {
           <div className="col-span-1 flex flex-col gap-4">
             <div className="bg-purple-100 p-4 rounded flex-grow">
               <TextArea
-                label="UNFAIR ADVANTAGE"
+                label="9. UNFAIR ADVANTAGE"
                 value={canvasData.unfairAdvantage}
                 onChange={(value) => handleChange('unfairAdvantage', value)}
                 placeholder="Something that can't be easily copied or bought"
@@ -170,7 +170,7 @@ const LeanCanvas = () => {
             </div>
             <div className="bg-yellow-100 p-4 rounded flex-grow">
               <TextArea
-                label="CHANNELS"
+                label="5. CHANNELS"
                 value={canvasData.channels}
                 onChange={(value) => handleChange('channels', value)}
                 placeholder="List your path to customers"
@@ -181,7 +181,7 @@ const LeanCanvas = () => {
           
           <div className="col-span-1 bg-orange-100 p-4 rounded">
             <TextArea
-              label="CUSTOMER SEGMENTS"
+              label="1. CUSTOMER SEGMENTS"
               value={canvasData.customerSegments}
               onChange={(value) => handleChange('customerSegments', value)}
               placeholder="List your target customers and users. Early Adopters: List the characteristics of your ideal customers"
@@ -193,7 +193,7 @@ const LeanCanvas = () => {
         <div className="grid grid-cols-2 gap-4 mt-4">
           <div className="bg-pink-100 p-4 rounded" style={{ height: '256px' }}>
             <TextArea
-              label="COST STRUCTURE"
+              label="7. COST STRUCTURE"
               value={canvasData.costStructure}
               onChange={(value) => handleChange('costStructure', value)}
               placeholder="List your fixed and variable costs"
@@ -204,7 +204,7 @@ const LeanCanvas = () => {
           
           <div className="bg-green-100 p-4 rounded" style={{ height: '256px' }}>
             <TextArea
-              label="REVENUE STREAMS"
+              label="6. REVENUE STREAMS"
               value={canvasData.revenueStreams}
               onChange={(value) => handleChange('revenueStreams', value)}
               placeholder="List your sources of revenue"
