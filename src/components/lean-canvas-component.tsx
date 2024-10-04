@@ -1,4 +1,4 @@
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, { useState, useRef, ChangeEvent, useEffect  } from 'react';
 import html2canvas from 'html2canvas';
 
 const LeanCanvas = () => {
@@ -60,22 +60,35 @@ const LeanCanvas = () => {
   };
 
   const handleChange = (field, value) => {
+    // Store the cursor position BEFORE updating the state
+    const textarea = textAreaRefs[field].current;
+    const selectionStart = textarea.selectionStart;
+    const selectionEnd = textarea.selectionEnd;
+
     setCanvasData(prevData => ({
       ...prevData,
       [field]: value
     }));
 
-    // Set focus and cursor position after state update
-    setTimeout(() => {
-      const textarea = textAreaRefs[field].current;
+    // Store the cursor position in the state
+    setCursorPosition({ field, selectionStart, selectionEnd });
+  };
+
+  // Add state for storing cursor position
+  const [cursorPosition, setCursorPosition] = useState({ field: null, selectionStart: 0, selectionEnd: 0 });
+
+  // Use useEffect to set the focus and cursor position after canvasData updates
+  useEffect(() => {
+    if (cursorPosition.field) {
+      const textarea = textAreaRefs[cursorPosition.field].current;
       if (textarea) {
         textarea.focus();
-        textarea.setSelectionRange(value.length, value.length);
+        textarea.setSelectionRange(cursorPosition.selectionStart, cursorPosition.selectionEnd);
       }
-    }, 0);
-  };
-  const TextArea = ({ label, value, onChange, placeholder, className = "", fieldName }) => (
-    <div className={`flex flex-col h-full ${className}`}>
+    }
+  }, [cursorPosition, textAreaRefs]); // Run the effect whenever cursorPosition or textAreaRefs change
+
+  const TextArea = ({ label, value, onChange, placeholder, className = "", fieldName }) => (    <div className={`flex flex-col h-full ${className}`}>
       <label className="font-bold mb-2">{label}</label>
       <textarea
         ref={textAreaRefs[fieldName]}
