@@ -90,8 +90,9 @@ const LeanCanvas = () => {
     }
   }, [cursorPosition, textAreaRefs]); // Run the effect whenever cursorPosition or textAreaRefs change
 
-  const TextArea = ({ label, value, onChange, placeholder, className = "", fieldName }) => (    <div className={`flex flex-col h-full ${className}`}>
-      <label className="font-bold mb-2">{label}</label>
+  const TextArea = ({ label, value, onChange, placeholder, className = "", fieldName }) => (
+    <div className={`flex flex-col h-full ${className}`}>
+      <label className="font-bold mb-1 text-xs">{label}</label>
       <textarea
         ref={textAreaRefs[fieldName]}
         className="flex-grow p-2 border border-gray-300 rounded"
